@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package unit.countah.v0;
+
+service Countah {
+    rpc Counter (CounterRequest) returns (stream CounterResponse);
+}
+
+message CounterRequest { }
+
+message CounterResponse {
+    fixed64 count = 1;
+}
