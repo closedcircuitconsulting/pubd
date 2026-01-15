@@ -1,0 +1,19 @@
+[Unit]
+Description=A toy gRPC server
+After=network-online.target
+Wants=network-online.target
+
+[Container]
+ContainerName=pubd
+Image=localhost:5000/pubd:latest
+PublishPort=60069:60069
+
+[Service]
+Restart=on-failure
+RestartSec=10s
+RestartSteps=5
+RestartMaxDelaySec=1min
+TimeoutStartSec=15min
+
+[Install]
+WantedBy=default.target
