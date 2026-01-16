@@ -5,7 +5,7 @@ Wants=network-online.target
 
 [Container]
 ContainerName=pubd
-Image=localhost:5000/pubd:latest
+Image=ghcr.io/closedcircuitconsulting.com/pubd:latest
 PublishPort=60069:60069
 
 [Service]
