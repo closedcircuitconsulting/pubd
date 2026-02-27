@@ -4,9 +4,9 @@
 # Build stage
 #
 
-FROM rust:1.91-alpine3.23 AS builder
+FROM rust:1.91-slim-bookworm AS builder
 
-RUN apk add --no-cache musl-dev protobuf-dev
+RUN apt-get update && apt-get install -y pkg-config protobuf-compiler && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
@@ -24,9 +24,9 @@ RUN cargo build --release
 # Run stage
 #
 
-FROM alpine:latest
+FROM debian:bookworm-slim
 
-RUN apk add --no-cache libgcc
+RUN apt-get update && apt-get install -y libgcc-s1 && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
